@@ -27,19 +27,28 @@ class Post(PostBase):
     id: int
     created_at: datetime
     owner_id: int
-    owner: UserOut
+    # owner: UserOut
 
     # This is for pydantic response model
     class Config:
         orm_mode = True
 
 
-class PostOut(PostBase):
+class PostVote(BaseModel):
+    id: int
+    content: str
+    created_at: datetime
+    published: bool
+    title: str
+    owner_id: int
+
+
+class PostOut(BaseModel):
     Post: Post
     votes: int
 
-    class Config:
-        orm_mode = True
+    # class Config:
+    #     orm_mode = True
 
 
 class UserCreate(BaseModel):
